@@ -2,6 +2,17 @@
 import nextPwa from 'next-pwa';
 
 const nextConfig = {
+  async headers() {
+    return [
+      {
+        source: '/manifest.json',
+        headers: [
+          { key: 'Content-Type', value: 'application/manifest+json' },
+          { key: 'Access-Control-Allow-Origin', value: '*' }
+        ]
+      }
+    ];
+  }
   // reactStrictMode: true,
   /* config options here */
 };
