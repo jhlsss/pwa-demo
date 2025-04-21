@@ -1,0 +1,22 @@
+{
+    "name": "我的 Next.js PWA 应用",
+    "short_name": "NextPWA",
+    "description": "一个使用 Next.js 构建的 PWA 示例应用",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#0070f3",
+    "icons": [
+      {
+        "src": "/icons/home-192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/icons/home-512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
+  
