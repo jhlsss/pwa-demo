@@ -8,7 +8,7 @@ const nextConfig = {
 
 const withPWA = nextPwa({
   dest: 'public', // Service Worker 和相关文件将输出到 public 目录
-  register: true, // 自动注册 Service Worker
+  register: false, // 自动注册 Service Worker
   skipWaiting: true, // 强制等待中的 Service Worker 被激活
   disable: process.env.NODE_ENV === 'development', // 关键：在开发环境禁用 PWA，避免缓存干扰 HMR
   importScripts: ['/custom-sw.js'], // 导入自定义的 Service Worker 脚本
