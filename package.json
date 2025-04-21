@@ -12,7 +12,8 @@
     "idb": "^8.0.2",
     "next": "15.3.1",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "workbox-webpack-plugin": "^7.3.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -23,7 +24,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.3.1",
-    "next-pwa": "^5.6.0",
+    "next-pwa": "5.6.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

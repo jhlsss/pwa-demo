@@ -12,23 +12,13 @@ const withPWA = nextPwa({
   skipWaiting: true, // 强制等待中的 Service Worker 被激活
   disable: process.env.NODE_ENV === 'development', // 关键：在开发环境禁用 PWA，避免缓存干扰 HMR
   importScripts: ['/custom-sw.js'], // 导入自定义的 Service Worker 脚本
+  buildExcludes: ['app-build-manifest.json'], // 排除 app-build-manifest.json 文件
   runtimeCaching: [
     {
-      urlPattern: /\/_next\/app-build-manifest\.json/,
-      handler: 'NetworkOnly',  // 始终从网络获取，不缓存
-      options: {
-        cacheName: 'excluded-files',
-        expiration: {
-          maxEntries: 10
-        }
-      }
-    },
-    {
-      
-      urlPattern: /^https:\/\/jsonplaceholder\.typicode\.com/,
-      handler: 'NetworkOnly'
+      urlPattern: /build-manifest/,
+      handler: 'NetworkOnly' // 强制跳过缓存
     }
-  ]
+  ] // 清空默认缓存规则
   // scope: '/app', // 可选：定义 Service Worker 的作用域，默认为 '/'
   // sw: 'service-worker.js', // 可选：自定义 Service Worker 文件名
   // importScripts: [...] // 可选：导入其他脚本到 Service Worker

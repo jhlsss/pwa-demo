@@ -153,8 +153,18 @@ self.addEventListener('activate', (event) => {
 });
 
 // Optional: Skip waiting phase for faster updates during development
-self.addEventListener('install', () => {
-  self.skipWaiting();
+self.addEventListener('install', (event) => {
   console.log('SW installing.');
+  event.waitUntil(
+    caches.open('workbox-precache').then(cache => {
+      return cache.keys().then(requests => {
+        requests.forEach(request => {
+          if (request.url.includes('app-build-manifest')) {
+            cache.delete(request);
+          }
+        });
+      });
+    }).then(() => self.skipWaiting())
+  );
   // event.waitUntil(self.skipWaiting()); // Uncomment for faster SW updates
 });
