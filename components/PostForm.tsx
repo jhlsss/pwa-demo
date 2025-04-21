@@ -15,7 +15,6 @@ interface PostData {
   userId: number;
 }
 
-
 // --- IndexedDB Functions (similar to before, adapted for posts) ---
 async function openPostsDatabase(): Promise<IDBPDatabase> {
   return openDB(DB_NAME, DB_VERSION, {
@@ -39,11 +38,10 @@ async function savePostForSync(post: PostData) {
 async function registerPostBackgroundSync() {
   if ('serviceWorker' in navigator && 'SyncManager' in window) {
     try {
-      const registration = await navigator.serviceWorker.ready as unknown as {
-        sync: { register: (tag: string) => Promise<void> }
-      };
+      const registration = await navigator.serviceWorker.ready
       // Use a specific tag for this sync type
-      await registration.sync.register('post-sync-tag');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      await (registration as any).sync.register('post-sync-tag');
       console.log('Background sync for posts registered successfully.');
     } catch (err) {
       console.error('Background sync registration failed:', err);
